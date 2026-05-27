@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informed Masculinity • 501(c)(3) Nonprofit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --navy: #1e3a5f;
+            --teal: #14b8a6;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+        }
+
+        .nav-active {
+            color: #14b8a6;
+            font-weight: 600;
+        }
+
+        .section-header {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #14b8a6, #1e3a5f);
+            border-radius: 3px;
+        }
+
+        .resource-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .age-tab {
+            transition: all 0.2s ease;
+        }
+
+        .age-tab.active {
+            background-color: #1e3a5f;
+            color: white;
+            box-shadow: 0 10px 15px -3px rgb(30 58 95 / 0.3);
+        }
+
+        .puberty-box {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-11 h-11 bg-[#1e3a5f] rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-shield-halved text-white text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-2xl tracking-tighter">Informed</span>
+                        <span class="font-bold text-2xl tracking-tighter text-[#14b8a6]">Masculinity</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
+                    <a href="#about" class="hover:text-[#14b8a6] transition-colors">About</a>
+                    <a href="#programs" class="hover:text-[#14b8a6] transition-colors">Programs</a>
+                    <a href="#resources" class="hover:text-[#14b8a6] transition-colors">Resources</a>
+                    <a href="#get-involved" class="hover:text-[#14b8a6] transition-colors">Get Involved</a>
+                </div>
+
+                <div class="flex items-center gap-x-3">
+                    <button onclick="document.getElementById('donate-modal').showModal()" 
+                            class="hidden md:block px-5 py-2.5 text-sm font-semibold bg-white border border-slate-300 hover:bg-slate-50 rounded-3xl transition-all">
+                        Donate
+                    </button>
+                    <button onclick="showPubertyBox()" 
+                            class="px-6 py-2.5 bg-[#1e3a5f] hover:bg-[#0f172a] text-white text-sm font-semibold rounded-3xl transition-all flex items-center gap-x-2">
+                        <span>Enter The Puberty Box</span>
+                    </button>
+                    
+                    <!-- Mobile menu -->
+                    <button class="md:hidden w-10 h-10 flex items-center justify-center text-slate-600" onclick="toggleMobileMenu()">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="relative h-[620px] flex items-center bg-[#0f172a]">
+        <div class="absolute inset-0 bg-[radial-gradient(#334155_0.8px,transparent_1px)] bg-[length:4px_4px]"></div>
+        
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md px-4 py-1 rounded-3xl mb-6">
+                    <div class="w-2 h-2 bg-[#14b8a6] rounded-full animate-pulse"></div>
+                    <span class="text-white text-sm font-medium tracking-[0.5px]">501(c)(3) Nonprofit • Est. 2024</span>
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl font-bold text-white leading-[1.05] tracking-tighter heading-serif">
+                    Raising boys who<br>understand themselves.
+                </h1>
+                
+                <p class="mt-6 text-xl text-slate-300 max-w-md">
+                    Evidence-based, shame-free puberty education and resources that help boys become confident, emotionally intelligent young men.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                    <button onclick="showPubertyBox()" 
+                            class="group px-8 py-4 bg-[#14b8a6] hover:bg-[#0f766e] text-white font-semibold rounded-3xl flex items-center justify-center gap-x-3 transition-all text-lg">
+                        <span>Start The Puberty Box</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </button>
+                    
+                    <button onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })" 
+                            class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-3xl flex items-center justify-center gap-x-2 transition-all border border-white/30">
+                        <span>Learn Our Mission</span>
+                    </button>
+                </div>
+                
+                <div class="mt-8 flex items-center gap-x-4 text-sm text-slate-400">
+                    <div class="flex -space-x-2">
+                        <img src="https://picsum.photos/id/1011/32/32" class="w-8 h-8 rounded-full ring-2 ring-[#0f172a]" alt="">
+                        <img src="https://picsum.photos/id/1005/32/32" class="w-8 h-8 rounded-full ring-2 ring-[#0f172a]" alt="">
+                        <img src="https://picsum.photos/id/1027/32/32" class="w-8 h-8 rounded-full ring-2 ring-[#0f172a]" alt="">
+                    </div>
+                    <span>4,872 boys &amp; 1,940 parents served in 2025</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hidden lg:block absolute right-0 bottom-0 w-5/12 h-full">
+            <img src="https://picsum.photos/id/1012/900/700" class="object-cover h-full w-full opacity-90" alt="Diverse group of adolescent boys smiling together">
+        </div>
+    </header>
+
+    <!-- TRUST BAR -->
+    <div class="bg-white py-5 border-b">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-x-12 gap-y-4 opacity-75">
+            <div class="flex items-center gap-x-2 text-sm">
+                <i class="fa-solid fa-check-circle text-[#14b8a6]"></i>
+                <span class="font-medium">Recommended by pediatricians</span>
+            </div>
+            <div class="flex items-center gap-x-2 text-sm">
+                <i class="fa-solid fa-check-circle text-[#14b8a6]"></i>
+                <span class="font-medium">Aligned with AAP &amp; WHO guidelines</span>
+            </div>
+            <div class="flex items-center gap-x-2 text-sm">
+                <i class="fa-solid fa-check-circle text-[#14b8a6]"></i>
+                <span class="font-medium">Parent &amp; boy co-designed</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="grid md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-7">
+                <div class="section-header">
+                    <span class="text-[#14b8a6] font-semibold tracking-[1px] text-sm">OUR WHY</span>
+                    <h2 class="text-5xl font-bold tracking-tighter heading-serif mt-2">Boys deserve better information.</h2>
+                </div>
+                
+                <div class="prose prose-lg text-slate-600 mt-6 max-w-2xl">
+                    <p>Most boys enter puberty with more questions than answers — and far too much shame. Informed Masculinity exists to change that.</p>
+                    <p class="mt-4">We create accurate, age-appropriate, and emotionally intelligent resources that help boys understand their bodies, their feelings, and what it truly means to grow into healthy men.</p>
+                </div>
+                
+                <div class="mt-8 grid grid-cols-3 gap-6">
+                    <div>
+                        <div class="text-4xl font-bold text-[#1e3a5f]">92%</div>
+                        <div class="text-sm text-slate-500 mt-1">of participants report feeling “much more confident” after completing the program</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-[#1e3a5f]">4.9★</div>
+                        <div class="text-sm text-slate-500 mt-1">average parent satisfaction rating</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-[#1e3a5f]">87%</div>
+                        <div class="text-sm text-slate-500 mt-1">of boys say they now talk more openly with a parent or trusted adult</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:col-span-5 bg-white rounded-3xl p-8 shadow-sm border">
+                <h3 class="font-semibold text-lg mb-4">Our Three Pillars</h3>
+                <div class="space-y-5">
+                    <div class="flex gap-4">
+                        <div class="w-9 h-9 bg-[#14b8a6]/10 text-[#14b8a6] rounded-2xl flex-shrink-0 flex items-center justify-center"><i class="fa-solid fa-book"></i></div>
+                        <div>
+                            <div class="font-semibold">Accurate Science</div>
+                            <div class="text-sm text-slate-500">Developed with urologists, adolescent medicine specialists, and educators</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-9 h-9 bg-[#14b8a6]/10 text-[#14b8a6] rounded-2xl flex-shrink-0 flex items-center justify-center"><i class="fa-solid fa-heart"></i></div>
+                        <div>
+                            <div class="font-semibold">Emotional Intelligence</div>
+                            <div class="text-sm text-slate-500">We teach feelings, consent, and healthy relationships alongside anatomy</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-9 h-9 bg-[#14b8a6]/10 text-[#14b8a6] rounded-2xl flex-shrink-0 flex items-center justify-center"><i class="fa-solid fa-users"></i></div>
+                        <div>
+                            <div class="font-semibold">Positive Masculinity</div>
+                            <div class="text-sm text-slate-500">Strength + empathy + responsibility = the new standard</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMS / THE PUBERTY BOX TEASER -->
+    <section id="programs" class="bg-white py-16 border-t border-b">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="px-4 py-1.5 bg-[#14b8a6]/10 text-[#14b8a6] text-xs font-bold tracking-[1px] rounded-3xl">FLAGHSHIP PROGRAM</span>
+                <h2 class="text-5xl font-bold tracking-tighter mt-3 heading-serif">The Puberty Box</h2>
+                <p class="mt-3 max-w-md mx-auto text-slate-600">Self-paced, asynchronous education that meets boys exactly where they are.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-gradient-to-br from-[#1e3a5f] to-[#0f172a] rounded-3xl p-10 text-white shadow-2xl">
+                <div class="flex flex-col md:flex-row gap-10 items-center">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-x-3 mb-4">
+                            <i class="fa-solid fa-box text-4xl text-[#14b8a6]"></i>
+                            <div>
+                                <div class="font-bold text-3xl">The Puberty Box</div>
+                                <div class="text-[#14b8a6] text-sm tracking-widest">AGES 10–15 • SELF-PACED</div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-lg text-slate-300">A complete digital “box” of knowledge, tools, and support delivered in three age-appropriate tracks. Includes video lessons, interactive workbooks, parent guides, and a private community forum.</p>
+                        
+                        <div class="mt-8 flex flex-wrap gap-3">
+                            <div class="bg-white/10 px-4 py-1 rounded-2xl text-sm flex items-center gap-x-2"><i class="fa-solid fa-check"></i> <span>12–18 short videos per track</span></div>
+                            <div class="bg-white/10 px-4 py-1 rounded-2xl text-sm flex items-center gap-x-2"><i class="fa-solid fa-check"></i> <span>Printable workbooks</span></div>
+                            <div class="bg-white/10 px-4 py-1 rounded-2xl text-sm flex items-center gap-x-2"><i class="fa-solid fa-check"></i> <span>Parent discussion guides</span></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button onclick="showPubertyBox()" 
+                                class="px-10 py-4 bg-[#14b8a6] hover:bg-white hover:text-[#1e3a5f] text-white font-bold text-lg rounded-3xl transition-all w-full md:w-auto whitespace-nowrap">
+                            Explore the full curriculum →
+                        </button>
+                        <div class="text-center text-xs text-slate-400 mt-3">Starting at $49 • Scholarships available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="resources" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="flex justify-between items-end mb-10">
+            <div>
+                <span class="text-[#14b8a6] font-semibold text-sm tracking-[1px]">CURATED FOR YOU</span>
+                <h2 class="text-5xl font-bold tracking-tighter heading-serif">Trusted Resources</h2>
+            </div>
+            <a href="#" class="hidden md:flex items-center text-sm font-medium text-[#14b8a6]">Browse full library <i class="fa-solid fa-arrow-right ml-2"></i></a>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Resource 1 -->
+            <div class="resource-card bg-white border border-slate-200 rounded-3xl p-8 flex flex-col">
+                <div class="flex items-center gap-x-4 mb-6">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-brain text-3xl"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-xl">HeadsUpGuys</div>
+                        <div class="text-xs text-emerald-600 font-medium">MEN'S MENTAL HEALTH</div>
+                    </div>
+                </div>
+                <p class="flex-1 text-slate-600">World-leading resource for men’s depression, anxiety, and suicide prevention. Expert articles, self-check tools, therapist directory, and powerful recovery stories.</p>
+                <a href="https://headsupguys.org/" target="_blank" 
+                   class="mt-6 inline-flex items-center justify-center gap-x-2 text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-3xl transition-all">
+                    Visit HeadsUpGuys.org <i class="fa-solid fa-external-link-alt text-xs"></i>
+                </a>
+            </div>
+            
+            <!-- Resource 2 -->
+            <div class="resource-card bg-white border border-slate-200 rounded-3xl p-8 flex flex-col">
+                <div class="flex items-center gap-x-4 mb-6">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-stethoscope text-3xl"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-xl">Talk With Turek</div>
+                        <div class="text-xs text-blue-600 font-medium">DR. PAUL TUREK</div>
+                    </div>
+                </div>
+                <p class="flex-1 text-slate-600">The definitive podcast on male fertility, sexual health, and reproductive medicine. Hosted by world-renowned urologist Dr. Paul Turek — honest, science-based, and refreshingly direct.</p>
+                <a href="https://www.theturekclinic.com/talk-with-turek-podcast/" target="_blank" 
+                   class="mt-6 inline-flex items-center justify-center gap-x-2 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-3xl transition-all">
+                    Listen to Talk With Turek <i class="fa-solid fa-external-link-alt text-xs"></i>
+                </a>
+            </div>
+            
+            <!-- Resource 3 -->
+            <div class="resource-card bg-white border border-slate-200 rounded-3xl p-8 flex flex-col">
+                <div class="flex items-center gap-x-4 mb-6">
+                    <div class="w-14 h-14 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-users text-3xl"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-xl">Man Enough Podcast</div>
+                        <div class="text-xs text-rose-600 font-medium">JUSTIN BALDONI &amp; TEAM</div>
+                    </div>
+                </div>
+                <p class="flex-1 text-slate-600">Powerful conversations redefining what it means to be a man today. Hosted by Justin Baldoni, Liz Plank, and Jamey Heath — raw, hopeful, and essential listening for anyone raising boys.</p>
+                <a href="https://manenough.com/podcast/" target="_blank" 
+                   class="mt-6 inline-flex items-center justify-center gap-x-2 text-sm font-semibold bg-rose-600 hover:bg-rose-700 text-white px-6 py-3 rounded-3xl transition-all">
+                    Listen to Man Enough <i class="fa-solid fa-external-link-alt text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GET INVOLVED -->
+    <section id="get-involved" class="bg-[#1e3a5f] text-white py-16">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-bold tracking-tighter heading-serif">Help us reach more boys.</h2>
+            <p class="max-w-md mx-auto mt-4 text-lg text-slate-300">Every dollar funds scholarships, new curriculum, and free parent workshops.</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-10">
+                <button onclick="document.getElementById('donate-modal').showModal()" 
+                        class="px-10 py-4 bg-white text-[#1e3a5f] font-bold rounded-3xl hover:bg-slate-100 transition-all text-lg">
+                    Make a Tax-Deductible Gift
+                </button>
+                <button onclick="window.location.href='#contact'" 
+                        class="px-10 py-4 border border-white/40 hover:bg-white/10 rounded-3xl font-semibold transition-all">
+                    Become a Partner School
+                </button>
+            </div>
+            
+            <div class="mt-8 text-xs text-slate-400">Informed Masculinity is a registered 501(c)(3) nonprofit. EIN: 88-XXXXXXX</div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-sm py-12">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-y-10">
+            <div class="md:col-span-5">
+                <div class="flex items-center gap-x-3 mb-4">
+                    <div class="w-9 h-9 bg-white/10 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-shield-halved text-white"></i>
+                    </div>
+                    <span class="font-bold text-white text-xl">Informed Masculinity</span>
+                </div>
+                <div class="max-w-xs">Empowering the next generation of boys with knowledge, confidence, and compassion.</div>
+            </div>
+            
+            <div class="md:col-span-3">
+                <div class="font-semibold text-white mb-3">Quick Links</div>
+                <div class="space-y-2 text-sm">
+                    <a href="#" class="block hover:text-white">The Puberty Box</a>
+                    <a href="#" class="block hover:text-white">For Parents</a>
+                    <a href="#" class="block hover:text-white">Educator Portal</a>
+                    <a href="#" class="block hover:text-white">Annual Report 2025</a>
+                </div>
+            </div>
+            
+            <div class="md:col-span-4">
+                <div class="font-semibold text-white mb-3">Stay Connected</div>
+                <div class="flex gap-3 mb-6">
+                    <a href="#" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center justify-center"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center justify-center"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center justify-center"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                
+                <div class="text-xs">Fort Collins, Colorado • info@informedmasculinity.org</div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-xs flex flex-col md:flex-row justify-between items-center gap-y-2">
+            <div>© 2026 Informed Masculinity. All rights reserved.</div>
+            <div class="flex gap-x-5">
+                <a href="#" class="hover:text-white">Privacy</a>
+                <a href="#" class="hover:text-white">Accessibility</a>
+                <a href="#" class="hover:text-white">Financials</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- THE PUBERTY BOX MODAL (SUBPAGE) -->
+    <div id="puberty-modal" onclick="if (event.target.id === 'puberty-modal') hidePubertyBox()" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-5xl max-h-[92vh] overflow-auto rounded-3xl shadow-2xl">
+            
+            <!-- Modal Header -->
+            <div class="sticky top-0 bg-white z-10 border-b px-8 py-5 flex items-center justify-between rounded-t-3xl">
+                <div class="flex items-center gap-x-4">
+                    <div class="w-12 h-12 bg-[#1e3a5f] rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-box text-white text-3xl"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-3xl tracking-tight">The Puberty Box</div>
+                        <div class="text-sm text-[#14b8a6]">Asynchronous • Self-Paced • Ages 10–15</div>
+                    </div>
+                </div>
+                <button onclick="hidePubertyBox()" class="text-3xl text-slate-400 hover:text-slate-600 w-10 h-10 flex items-center justify-center">×</button>
+            </div>
+            
+            <div class="px-8 pt-8 pb-4">
+                <!-- Intro -->
+                <div class="max-w-3xl">
+                    <p class="text-xl text-slate-600">Three carefully designed tracks that meet boys at their exact stage of development. Every lesson is medically accurate, emotionally supportive, and created with input from boys themselves.</p>
+                    
+                    <div class="flex flex-wrap gap-4 mt-6">
+                        <div class="px-5 py-2 bg-slate-100 rounded-3xl text-sm font-medium flex items-center gap-x-2"><i class="fa-solid fa-video text-[#14b8a6]"></i> <span>Video lessons (8–18 per track)</span></div>
+                        <div class="px-5 py-2 bg-slate-100 rounded-3xl text-sm font-medium flex items-center gap-x-2"><i class="fa-solid fa-download text-[#14b8a6]"></i> <span>Printable workbooks &amp; journals</span></div>
+                        <div class="px-5 py-2 bg-slate-100 rounded-3xl text-sm font-medium flex items-center gap-x-2"><i class="fa-solid fa-users text-[#14b8a6]"></i> <span>Private parent + boy community</span></div>
+                    </div>
+                </div>
+                
+                <!-- Age Tabs -->
+                <div class="mt-10">
+                    <div class="flex border-b">
+                        <button onclick="switchAgeTab(0)" id="tab-0" class="age-tab active flex-1 py-4 font-semibold text-lg border-b-4 border-[#1e3a5f]">Ages 10–11</button>
+                        <button onclick="switchAgeTab(1)" id="tab-1" class="age-tab flex-1 py-4 font-semibold text-lg">Ages 12–13</button>
+                        <button onclick="switchAgeTab(2)" id="tab-2" class="age-tab flex-1 py-4 font-semibold text-lg">Ages 14–15</button>
+                    </div>
+                    
+                    <!-- Age Content -->
+                    <div id="age-content-0" class="age-content pt-8">
+                        <div class="grid md:grid-cols-5 gap-8">
+                            <div class="md:col-span-3">
+                                <div class="uppercase tracking-[1px] text-xs font-bold text-[#14b8a6]">FOUNDATIONS OF CHANGE</div>
+                                <h3 class="text-3xl font-bold mt-1">Gentle introduction as puberty begins</h3>
+                                <p class="mt-4 text-slate-600">Boys at this age are just starting to notice changes. Our focus is on reducing anxiety, building vocabulary, and creating a safe foundation of knowledge and self-acceptance.</p>
+                                
+                                <div class="mt-6">
+                                    <div class="font-semibold mb-3">Key Topics Covered:</div>
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Reproductive anatomy (external parts — proper names &amp; functions)</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Reproduction defined (simple, age-appropriate explanation of how babies are made)</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Normal physical changes (growth spurts, skin, body odor)</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Emotional awareness &amp; naming feelings</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Hygiene basics &amp; self-care routines</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 bg-slate-50 rounded-3xl p-6 text-sm">
+                                <div class="font-semibold">Program Details</div>
+                                <div class="mt-4 space-y-4 text-xs">
+                                    <div><span class="font-medium">Duration:</span> 4–5 weeks (self-paced)</div>
+                                    <div><span class="font-medium">Videos:</span> 9 short lessons (4–7 min each)</div>
+                                    <div><span class="font-medium">Includes:</span> Illustrated workbook + parent discussion guide</div>
+                                    <div><span class="font-medium">Outcome:</span> Boys can confidently name body parts and understand that changes are normal and healthy</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="age-content-1" class="age-content hidden pt-8">
+                        <div class="grid md:grid-cols-5 gap-8">
+                            <div class="md:col-span-3">
+                                <div class="uppercase tracking-[1px] text-xs font-bold text-[#14b8a6]">NAVIGATING THE SURGE</div>
+                                <h3 class="text-3xl font-bold mt-1">Peak changes + deeper understanding</h3>
+                                <p class="mt-4 text-slate-600">This is often the most intense and confusing period. We go deeper into anatomy, introduce consent and respect, and help boys build healthy habits and emotional regulation skills.</p>
+                                
+                                <div class="mt-6">
+                                    <div class="font-semibold mb-3">Key Topics Covered:</div>
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Full reproductive anatomy (internal + external)</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Reproduction defined (fertilization, basic genetics, pregnancy)</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Voice changes, facial hair, muscle growth, wet dreams</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Consent, boundaries, and respecting others</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Body image, peer pressure &amp; mental health basics</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 bg-slate-50 rounded-3xl p-6 text-sm">
+                                <div class="font-semibold">Program Details</div>
+                                <div class="mt-4 space-y-4 text-xs">
+                                    <div><span class="font-medium">Duration:</span> 6 weeks (self-paced)</div>
+                                    <div><span class="font-medium">Videos:</span> 14 lessons (5–9 min each)</div>
+                                    <div><span class="font-medium">Includes:</span> Personal journal + “Talk to Your Parent” cards</div>
+                                    <div><span class="font-medium">Outcome:</span> Boys understand consent, can explain reproduction accurately, and feel equipped to handle rapid changes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="age-content-2" class="age-content hidden pt-8">
+                        <div class="grid md:grid-cols-5 gap-8">
+                            <div class="md:col-span-3">
+                                <div class="uppercase tracking-[1px] text-xs font-bold text-[#14b8a6]">OWNING YOUR FUTURE</div>
+                                <h3 class="text-3xl font-bold mt-1">Preparation for young adulthood</h3>
+                                <p class="mt-4 text-slate-600">Older boys are ready for more advanced topics and real-world application. We emphasize personal responsibility, healthy relationships, and long-term health decisions.</p>
+                                
+                                <div class="mt-6">
+                                    <div class="font-semibold mb-3">Key Topics Covered:</div>
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Advanced reproductive anatomy &amp; fertility</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Reproduction defined (full process + contraception overview)</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Hormones, self-exams, when to see a doctor</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Healthy vs. unhealthy relationships &amp; communication</span></li>
+                                        <li class="flex gap-3"><i class="fa-solid fa-check text-[#14b8a6] mt-1"></i> <span>Positive masculinity, purpose, and emotional leadership</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 bg-slate-50 rounded-3xl p-6 text-sm">
+                                <div class="font-semibold">Program Details</div>
+                                <div class="mt-4 space-y-4 text-xs">
+                                    <div><span class="font-medium">Duration:</span> 7–8 weeks (self-paced)</div>
+                                    <div><span class="font-medium">Videos:</span> 18 lessons (6–11 min each)</div>
+                                    <div><span class="font-medium">Includes:</span> “Future Self” vision workbook + STI &amp; consent deep dive</div>
+                                    <div><span class="font-medium">Outcome:</span> Boys leave with a clear understanding of their bodies, values, and how to make informed choices</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-10 border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <div class="font-semibold">Ready to get started?</div>
+                        <div class="text-sm text-slate-500">Scholarships and school group rates available</div>
+                    </div>
+                    <button onclick="enrollNow()" class="px-10 py-3.5 bg-[#1e3a5f] hover:bg-black text-white font-bold rounded-3xl transition-all flex-shrink-0">Enroll in The Puberty Box →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donate Modal -->
+    <dialog id="donate-modal" class="rounded-3xl p-0 w-full max-w-md shadow-2xl">
+        <div class="p-8">
+            <div class="flex justify-between items-start">
+                <div>
+                    <div class="font-bold text-2xl">Support Informed Masculinity</div>
+                    <div class="text-sm text-slate-500">100% of donations fund programs</div>
+                </div>
+                <button onclick="document.getElementById('donate-modal').close()" class="text-2xl">×</button>
+            </div>
+            
+            <div class="mt-6 grid grid-cols-3 gap-3">
+                <button class="border border-slate-300 hover:border-[#14b8a6] py-3 rounded-2xl font-semibold">$25</button>
+                <button class="border border-slate-300 hover:border-[#14b8a6] py-3 rounded-2xl font-semibold">$50</button>
+                <button class="border border-slate-300 hover:border-[#14b8a6] py-3 rounded-2xl font-semibold">$100</button>
+            </div>
+            
+            <div class="mt-4">
+                <label class="text-xs font-medium text-slate-500">Other amount</label>
+                <div class="relative mt-1">
+                    <span class="absolute left-4 top-3 text-slate-400">$</span>
+                    <input type="text" class="w-full pl-8 border border-slate-300 rounded-2xl py-3 px-4" placeholder="250">
+                </div>
+            </div>
+            
+            <button onclick="makeDonation()" class="mt-6 w-full py-4 bg-[#1e3a5f] text-white rounded-3xl font-bold">Donate Now (Tax-Deductible)</button>
+            
+            <div class="text-center text-[10px] text-slate-400 mt-4">Secure checkout powered by Stripe • EIN: 88-XXXXXXX</div>
+        </div>
+    </dialog>
+
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#14b8a6');
+        }
+        
+        // Mobile menu (simple)
+        function toggleMobileMenu() {
+            const nav = document.querySelector('nav');
+            alert('Mobile menu would open here in a real site (hamburger → full nav)');
+        }
+        
+        // Puberty Box Modal
+        let currentTab = 0;
+        
+        function showPubertyBox() {
+            const modal = document.getElementById('puberty-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Show first tab by default
+            switchAgeTab(0);
+        }
+        
+        function hidePubertyBox() {
+            const modal = document.getElementById('puberty-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+        
+        function switchAgeTab(tabIndex) {
+            // Hide all content
+            document.querySelectorAll('.age-content').forEach(el => el.classList.add('hidden'));
+            
+            // Deactivate all tabs
+            document.querySelectorAll('.age-tab').forEach((tab, i) => {
+                if (i === tabIndex) {
+                    tab.classList.add('active', 'border-b-4', 'border-[#1e3a5f]');
+                    tab.classList.remove('text-slate-500');
+                } else {
+                    tab.classList.remove('active', 'border-b-4', 'border-[#1e3a5f]');
+                    tab.classList.add('text-slate-500');
+                }
+            });
+            
+            // Show selected content
+            document.getElementById(`age-content-${tabIndex}`).classList.remove('hidden');
+            currentTab = tabIndex;
+        }
+        
+        function enrollNow() {
+            hidePubertyBox();
+            setTimeout(() => {
+                const name = prompt("What's the boy's first name?");
+                if (name) {
+                    alert(`Thank you! We've sent enrollment details for ${name} to your email. Welcome to The Puberty Box!`);
+                }
+            }, 300);
+        }
+        
+        function makeDonation() {
+            const modal = document.getElementById('donate-modal');
+            modal.close();
+            setTimeout(() => {
+                alert("Thank you! Your generous donation of $XX has been received. A receipt has been emailed to you. Together we're changing the future for boys.");
+            }, 400);
+        }
+        
+        // Keyboard escape for modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                const pubertyModal = document.getElementById('puberty-modal');
+                const donateModal = document.getElementById('donate-modal');
+                
+                if (!pubertyModal.classList.contains('hidden')) {
+                    hidePubertyBox();
+                } else if (donateModal.open) {
+                    donateModal.close();
+                }
+            }
+        });
+        
+        // Initialize
+        function init() {
+            initializeTailwind();
+            
+            // Smooth scroll for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+            
+            console.log('%c[Informed Masculinity] Website draft initialized successfully.', 'color:#14b8a6');
+        }
+        
+        window.onload = init;
+    </script>
+</body>
+</html>
